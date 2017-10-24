@@ -1,6 +1,6 @@
-package com.noni.au.app.kotlintodosampleapp.injection
+package com.noni.au.app.Hacksessibility.injection
 
-import com.noni.au.app.kotlintodosampleapp.presentation.view.activities.MainActivity
+import com.noni.au.app.Hacksessibility.presentation.view.activities.MainActivity
 import dagger.Component
 
 @PerScreen

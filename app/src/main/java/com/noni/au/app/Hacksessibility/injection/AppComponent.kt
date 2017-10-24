@@ -1,6 +1,6 @@
-package com.noni.au.app.kotlintodosampleapp.injection
+package com.noni.au.app.Hacksessibility.injection
 
-import com.noni.au.app.kotlintodosampleapp.app.Hacksessibility
+import com.noni.au.app.Hacksessibility.app.Hacksessibility
 import dagger.Component
 import javax.inject.Singleton
 
