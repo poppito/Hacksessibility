@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Hacksessibiity</string>
+
+
+    <!--Main Activity -->
+    <string name="hint_et_title">Title</string>
+    <string name="hint_et_content">Content</string>
+    <string name="btn_submit">Submit</string>
+</resources>
