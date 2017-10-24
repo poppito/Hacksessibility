@@ -18,6 +18,8 @@
                 </category>
             </intent-filter>
         </activity>
+        <service android:name=".presentation.view.services.AccessibilityBindingService">
+        </service>
     </application>
 
 </manifest>
