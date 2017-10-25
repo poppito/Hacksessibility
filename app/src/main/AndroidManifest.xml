@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.noni.au.app.Hacksessibility">
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
     <application
         android:name="com.noni.au.app.Hacksessibility.app.Hacksessibility"
         android:allowBackup="true"
@@ -9,7 +11,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.noni.au.app.Hacksessibility.presentation.view.activities.MainActivity"
+        <activity
+            android:name="com.noni.au.app.Hacksessibility.presentation.view.activities.MainActivity"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN">
@@ -18,7 +21,10 @@
                 </category>
             </intent-filter>
         </activity>
-        <service android:name=".presentation.view.services.AccessibilityBindingService">
+        <service
+            android:name=".presentation.view.services.AccessibilityBindingService"
+            android:enabled="true"
+            android:exported="false">
         </service>
     </application>
 

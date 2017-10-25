@@ -6,4 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".presentation.view.activities.MainActivity">
+    <TextView
+        android:id="@+id/txt_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

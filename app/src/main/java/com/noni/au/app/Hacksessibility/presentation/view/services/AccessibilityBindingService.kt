@@ -3,10 +3,14 @@ package com.noni.au.app.Hacksessibility.presentation.view.services
 import android.app.*
 import android.content.Context
 import android.content.Intent
+import android.graphics.PixelFormat
 import android.os.Build
 import android.os.IBinder
 import android.support.v4.app.NotificationCompat
 import android.util.Log
+import android.view.Gravity
+import android.view.WindowManager
+import android.widget.ImageView
 import com.noni.au.app.Hacksessibility.R
 import com.noni.au.app.Hacksessibility.presentation.view.activities.MainActivity
 
@@ -19,6 +23,9 @@ import com.noni.au.app.Hacksessibility.presentation.view.activities.MainActivity
  */
 class AccessibilityBindingService : Service() {
 
+    private var mWindowManager: WindowManager? = null
+    private var mFloatingIcon: ImageView? = null
+
     //region lifecycle
     override fun onBind(intent: Intent?): IBinder {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -27,12 +34,16 @@ class AccessibilityBindingService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.v("TAG", "service started")
         createNotification()
+        createFloatingWindow()
         //stopSelf()
         return super.onStartCommand(intent, flags, startId)
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        if (mWindowManager != null && mFloatingIcon != null) {
+            mWindowManager?.removeView(mFloatingIcon!!)
+        }
         Log.v("TAG", "service finishing up..")
     }
 
@@ -60,7 +71,6 @@ class AccessibilityBindingService : Service() {
         }
 
 
-
         val resultIntent = Intent(this, MainActivity::class.java)
 
         val stackBuilder = TaskStackBuilder.create(this)
@@ -71,6 +81,26 @@ class AccessibilityBindingService : Service() {
         builder.setContentIntent(pendingIntent)
 
         manager?.notify(R.string.NOTIFICATION_CHANNEL_ID, builder.build())
+    }
+
+    private fun createFloatingWindow() {
+        mWindowManager = getSystemService(Context.WINDOW_SERVICE) as? WindowManager
+        mFloatingIcon = ImageView(this)
+        mFloatingIcon?.setImageResource(R.drawable.img_dot_higlighted)
+
+        val params = WindowManager.LayoutParams(WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.TYPE_PHONE,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                PixelFormat.TRANSLUCENT)
+
+        params.gravity = Gravity.CENTER
+        params.x = 0
+        params.y = 100
+
+        if (mFloatingIcon != null && mWindowManager != null)  {
+            mWindowManager!!.addView(mFloatingIcon!!, params)
+        }
     }
 
     //endregion
