@@ -6,4 +6,10 @@
     <string name="hint_et_title">Title</string>
     <string name="hint_et_content">Content</string>
     <string name="btn_submit">Submit</string>
+    
+    <!---Accesibility service -->
+    <string name="text_channel_name">Channel 1</string>
+    <string name="text_channel_description">Channel 1 description</string>
+    <string name="text_notification_content_title">Notified</string>
+    <string name="text_notification">My notification text!</string>
 </resources>
