@@ -6,10 +6,7 @@ import android.content.Intent
 import android.graphics.PixelFormat
 import android.os.IBinder
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.WindowManager
+import android.view.*
 import com.noni.au.app.hacksessibility.R
 
 
@@ -27,7 +24,7 @@ class AccessibilityBindingService : Service() {
 
     //region lifecycle
     override fun onBind(intent: Intent?): IBinder? {
-       return null
+        return null
     }
 
     override fun onCreate() {
@@ -70,15 +67,44 @@ class AccessibilityBindingService : Service() {
         params.x = 0
         params.y = 100
 
-        if (mFloatingIcon != null && mWindowManager != null)  {
+        if (mFloatingIcon != null && mWindowManager != null) {
             if (mFloatingIcon!!.windowToken == null) {
                 mWindowManager!!.addView(mFloatingIcon!!, params)
 
                 val btnClose = mFloatingIcon?.findViewById(R.id.img_close_button)
                 btnClose?.setOnClickListener { stopSelf() }
+
+                mFloatingIcon?.setOnTouchListener{ v, event ->
+                    handleEvent(mFloatingIcon as ViewGroup, event, params)
+                }
             }
         }
     }
 
+
     //endregion
+
+    private fun handleEvent (view: ViewGroup?, event: MotionEvent, params: WindowManager.LayoutParams) : Boolean {
+        var initialX = 0
+        var initialY = 0
+        var initialTouchX = 0f
+        var initialTouchY = 0f
+
+        if (event.action == MotionEvent.ACTION_DOWN) {
+            initialX = params.x
+            initialY = params.y
+            initialTouchX = event.getRawX()
+            initialTouchY = event.getRawY()
+            return true
+
+        } else if (event.action == MotionEvent.ACTION_MOVE) {
+            params.x = initialX + (event.rawX - initialTouchX).toInt()
+            params.y = initialY + (event.rawY - initialTouchY).toInt()
+            mWindowManager?.updateViewLayout(mFloatingIcon, params)
+            return true
+        }
+
+        return false
+
+    }
 }
