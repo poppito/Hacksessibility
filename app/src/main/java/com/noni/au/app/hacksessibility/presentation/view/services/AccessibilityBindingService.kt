@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.*
 import com.noni.au.app.hacksessibility.R
 
-
 /**
  * ideally this service will
  * get an instance of the
@@ -75,7 +74,7 @@ class AccessibilityBindingService : Service() {
                 btnClose?.setOnClickListener { stopSelf() }
 
                 mFloatingIcon?.setOnTouchListener{ v, event ->
-                    handleEvent(mFloatingIcon as ViewGroup, event, params)
+                    handleEvent(event, params)
                 }
             }
         }
@@ -84,7 +83,7 @@ class AccessibilityBindingService : Service() {
 
     //endregion
 
-    private fun handleEvent (view: ViewGroup?, event: MotionEvent, params: WindowManager.LayoutParams) : Boolean {
+    private fun handleEvent (event: MotionEvent, params: WindowManager.LayoutParams) : Boolean {
         var initialX = 0
         var initialY = 0
         var initialTouchX = 0f
