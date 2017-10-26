@@ -1,6 +1,6 @@
-package com.noni.au.app.Hacksessibility.injection
+package com.noni.au.app.hacksessibility.injection
 
-import com.noni.au.app.Hacksessibility.presentation.view.activities.MainActivity
+import com.noni.au.app.hacksessibility.presentation.view.activities.MainActivity
 import dagger.Component
 
 @PerScreen

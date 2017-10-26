@@ -1,9 +1,9 @@
-package com.noni.au.app.Hacksessibility.app
+package com.noni.au.app.hacksessibility.app
 
 import android.app.Application
-import com.noni.au.app.Hacksessibility.injection.AppComponent
-import com.noni.au.app.Hacksessibility.injection.AppModule
-import com.noni.au.app.Hacksessibility.injection.DaggerAppComponent
+import com.noni.au.app.hacksessibility.injection.AppComponent
+import com.noni.au.app.hacksessibility.injection.AppModule
+import com.noni.au.app.hacksessibility.injection.DaggerAppComponent
 
 class Hacksessibility : Application() {
 

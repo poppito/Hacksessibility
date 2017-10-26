@@ -1,4 +1,4 @@
-package com.noni.au.app.Hacksessibility.injection
+package com.noni.au.app.hacksessibility.injection
 
 import android.app.Application
 import dagger.Module

@@ -1,6 +1,6 @@
-package com.noni.au.app.Hacksessibility.injection
+package com.noni.au.app.hacksessibility.injection
 
-import com.noni.au.app.Hacksessibility.app.Hacksessibility
+import com.noni.au.app.hacksessibility.app.Hacksessibility
 import dagger.Component
 import javax.inject.Singleton
 

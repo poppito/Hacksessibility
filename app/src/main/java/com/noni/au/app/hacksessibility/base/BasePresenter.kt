@@ -1,4 +1,4 @@
-package com.noni.au.app.Hacksessibility.base
+package com.noni.au.app.hacksessibility.base
 
 open abstract class BasePresenter<T:Any> {
 

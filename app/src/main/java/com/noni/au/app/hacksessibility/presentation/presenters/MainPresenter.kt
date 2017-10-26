@@ -1,6 +1,6 @@
-package com.noni.au.app.Hacksessibility.presentation.presenters
+package com.noni.au.app.hacksessibility.presentation.presenters
 
-import com.noni.au.app.Hacksessibility.base.BasePresenter
+import com.noni.au.app.hacksessibility.base.BasePresenter
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor() : BasePresenter<MainPresenter.ViewSurface>() {

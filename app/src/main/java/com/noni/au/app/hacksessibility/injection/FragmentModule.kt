@@ -1,4 +1,4 @@
-package com.noni.au.app.Hacksessibility.injection
+package com.noni.au.app.hacksessibility.injection
 
 import android.content.Context
 import android.support.v4.app.Fragment

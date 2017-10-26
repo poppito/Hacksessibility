@@ -4,16 +4,17 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 24
     buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "io.embry.Hacksessibility"
         minSdkVersion 17
-        targetSdkVersion 26
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         resValue "string", "NOTIFICATION_CHANNEL_ID", "channel_01"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         debug {
@@ -44,10 +45,12 @@ dependencies {
     testCompile 'junit:junit:4.12'
     kapt 'com.google.dagger:dagger-compiler:2.10'
 
-
     //Rx
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.1.0'
+
+    //svg
+    compile 'com.android.support:appcompat-v7:23.2.0'
 
 }
 repositories {
