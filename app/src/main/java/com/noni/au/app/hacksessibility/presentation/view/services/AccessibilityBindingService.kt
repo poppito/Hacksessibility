@@ -62,7 +62,7 @@ class AccessibilityBindingService : Service() {
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT)
 
-        params.gravity = Gravity.LEFT or Gravity.TOP
+        params.gravity = Gravity.CENTER
         params.x = 0
         params.y = 100
 
@@ -73,9 +73,6 @@ class AccessibilityBindingService : Service() {
                 val btnClose = mFloatingIcon?.findViewById(R.id.img_close_button)
                 btnClose?.setOnClickListener { stopSelf() }
 
-                mFloatingIcon?.setOnTouchListener{ v, event ->
-                    handleEvent(event, params)
-                }
             }
         }
     }
@@ -83,7 +80,7 @@ class AccessibilityBindingService : Service() {
 
     //endregion
 
-    private fun handleEvent (event: MotionEvent, params: WindowManager.LayoutParams) : Boolean {
+    private fun handleEvent(event: MotionEvent, params: WindowManager.LayoutParams): Boolean {
         var initialX = 0
         var initialY = 0
         var initialTouchX = 0f
@@ -96,6 +93,10 @@ class AccessibilityBindingService : Service() {
             initialTouchY = event.getRawY()
             return true
 
+        } else if (event.action == MotionEvent.ACTION_UP) {
+            val Xdiff = (event.rawX - initialTouchX).toInt()
+            val Ydiff = (event.rawY - initialTouchY).toInt()
+            return true
         } else if (event.action == MotionEvent.ACTION_MOVE) {
             params.x = initialX + (event.rawX - initialTouchX).toInt()
             params.y = initialY + (event.rawY - initialTouchY).toInt()
