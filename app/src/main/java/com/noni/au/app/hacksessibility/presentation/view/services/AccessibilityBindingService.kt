@@ -12,6 +12,7 @@ import android.view.View
 import android.view.WindowManager
 import com.noni.au.app.hacksessibility.R
 
+
 /**
  * ideally this service will
  * get an instance of the
@@ -54,39 +55,6 @@ class AccessibilityBindingService : Service() {
 
     //region private
 
-    /*private fun createNotification() {
-        val id = resources.getString(R.string.NOTIFICATION_CHANNEL_ID)
-        val manager = getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager
-
-
-        val builder = NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.img_dot_higlighted)
-                .setContentTitle(resources.getString(R.string.text_channel_name))
-                .setContentText(resources.getString(R.string.text_channel_description))
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = resources.getString(R.string.text_channel_name)
-            val description = resources.getString(R.string.text_channel_description)
-            val importance = NotificationManager.IMPORTANCE_HIGH
-            val channel = NotificationChannel(id, name, importance)
-            channel.description = description
-            manager?.createNotificationChannel(channel)
-        }
-
-
-        val resultIntent = Intent(this, MainActivity::class.java)
-
-        val stackBuilder = TaskStackBuilder.create(this)
-        stackBuilder.addNextIntent(resultIntent)
-
-        val pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
-
-        builder.setContentIntent(pendingIntent)
-
-        manager?.notify(R.string.NOTIFICATION_CHANNEL_ID, builder.build())
-    }
-    */
-
     private fun createFloatingWindow() {
         Log.v("TAG", "service created!")
         mFloatingIcon = LayoutInflater.from(this).inflate(R.layout.service_accessibility, null)
@@ -99,12 +67,15 @@ class AccessibilityBindingService : Service() {
                 PixelFormat.TRANSLUCENT)
 
         params.gravity = Gravity.LEFT or Gravity.TOP
-        params.x = 150
+        params.x = 0
         params.y = 100
 
         if (mFloatingIcon != null && mWindowManager != null)  {
             if (mFloatingIcon!!.windowToken == null) {
                 mWindowManager!!.addView(mFloatingIcon!!, params)
+
+                val btnClose = mFloatingIcon?.findViewById(R.id.img_close_button)
+                btnClose?.setOnClickListener { stopSelf() }
             }
         }
     }

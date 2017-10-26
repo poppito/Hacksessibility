@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), ViewSurface {
         setContentView(R.layout.activity_main)
         inject()
         mPresenter.onStart(this)
+        txt_view.text = "test"
     }
 
     private fun inject() {
