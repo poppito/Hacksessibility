@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity(), ViewSurface {
         if (Build.VERSION.SDK_INT >= 23) {
             if (Settings.canDrawOverlays(this)) {
                 startService(Intent(this, AccessibilityBindingService::class.java))
+                finish()
             } else {
                 askForPermission()
             }
